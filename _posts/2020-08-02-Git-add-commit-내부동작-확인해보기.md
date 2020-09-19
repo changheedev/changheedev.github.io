@@ -4,7 +4,7 @@ categories: [Programming, Git]
 tags: [git, add, commit]
 ---
 
-## 1\. Object
+## 1. Object
 
 Git은 데이터를 저장할 때 데이터와 헤더로 생성한 SHA-1 체크섬으로 파일 이름을 짓는다. 해시의 처음 두 글자를 따서 디렉토리 이름에 사용하고 나머지 38글자를 파일 이름에 사용하는데 이 파일은 `.git/objects` 경로 아래에 저장된다.
 
@@ -54,7 +54,7 @@ Git은 데이터를 저장할 때 데이터와 헤더로 생성한 SHA-1 체크�
 
 ![R1280x0-8.png](/assets/img/posts/2020-08-02-Git-add-commit-내부동작-확인해보기/R1280x0-8.png)
 
-## 2\. Add의 동작
+## 2. Add의 동작
 
 ### 2.1 새로운 파일 등록
 
@@ -78,7 +78,7 @@ index 파일에 해당 파일의 해시값을 새로운 해시값으로 변경�
 
 ![R1280x0-12.png](/assets/img/posts/2020-08-02-Git-add-commit-내부동작-확인해보기/R1280x0-12.png)
 
-## 3\. Commit의 동작
+## 3. Commit의 동작
 
 ### 3.1 **commit**
 
