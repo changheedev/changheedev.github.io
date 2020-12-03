@@ -31,9 +31,9 @@ $ ssh my-remote-server
 password:
 ```
 
-## SSH key 인증
 
-맥의 터미널에서 라즈베리파이에 접속할 때 매번 비밀번호를 입력하는 대신 SSH 키를 이용하여 인증하도록 설정할 수 있다.
+
+## SSH key 인증
 
 ### 기존 키 확인
 
@@ -43,7 +43,9 @@ password:
 ls ~/.ssh
 ```
 
-### 새로운 키 생성
+
+
+### 새로운 키 생성(기존 키가 존재하지 않는 경우 진행)
 
 다음 명령어를 실행하여 키 생성 작업을 시작한다.
 
@@ -57,15 +59,19 @@ $ ssh-keygen
 
 여기까지 완료하면 키 생성이 시작되고 ~/.ssh 디렉토리에 **id_rsa** 파일과 **id_rsa.pub** 파일이 생성된다.
 
+
+
 ### 공개키 등록하기
 
-ssh-copy-id 명령어를 사용하여 라즈베리파이에 공개키를 등록한다.
+ssh-copy-id 명령어를 사용하여 원격 서버에 공개키를 등록한다.
 
-username 과 ip-address 는 라즈베리파이의 계정 id와 아이피 주소를 사용한다.
+username 과 ip-address 는 원격서버의 계정 id와 아이피 주소를 사용한다.
 
 ```
 $ ssh-copy-id <USERNAME>@<IP-ADDRESS>
 ```
+
+
 
 만약 ssh-copy-id 명령어를 사용할 수 없다면 직접 등록해주어야 한다.
 
