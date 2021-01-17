@@ -1,7 +1,7 @@
 ---
 title: ArrayList vs LinkedList
 date: 2020-08-01 18:11:00 +0900
-categories: [Programming, Algorithm]
+categories: [Programming, Java]
 tags: [ArrayList, LinkedList, Algorithm, Java]
 ---
 
@@ -46,18 +46,18 @@ for (int i = 0; i < vertexes[cur.number].size(); i++) {
 
 **ArrayList**
 
--   선언될 때 Compile time에 할당되어 진다. 이것을 정적 메모리 할당이라고 한다.
--   **Stack** 영역에 메모리 할당이 이루어진다.
+- 선언될 때 Compile time에 할당되어 진다. 이것을 정적 메모리 할당이라고 한다.
+- **Stack** 영역에 메모리 할당이 이루어진다.
 
 **LinkedList**
 
--   새로운 원소가 추가될 때 runtime에 할당되어 진다. 이것은 동적 메모리 할당이라고 한다.
--   **Heap** 영역에 메모리 할당이 이루어진다.
+- 새로운 원소가 추가될 때 runtime에 할당되어 진다. 이것은 동적 메모리 할당이라고 한다.
+- **Heap** 영역에 메모리 할당이 이루어진다.
 
 ## 5. **결론**
 
--   삽입과 삭제가 빈번하다면 **LinkedList**를 사용하는 것이 더 좋다.
--   데이터에 접근하는 게 중요하다면 **Array**를 사용하는 것이 좋다.
+- 삽입과 삭제가 빈번하다면 **LinkedList**를 사용하는 것이 더 좋다.
+- 데이터에 접근하는 게 중요하다면 **Array**를 사용하는 것이 좋다.
 
 일반적인 알고리즘 문제를 풀 때는 LinkedList보다 ArrayList가 훨씬 빠르고 좋다고 한다. 대부분의 알고리즘 문제는 메모리 공간의 범위를 파악할 수 있도록 N의 크기가 주어지기 때문이다.
 
