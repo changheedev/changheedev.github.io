@@ -10,5 +10,3 @@ order: 4
 ---
 
 Backend Application Developer
-
-Interested in... MSA, DevOps, Infra Architecture
