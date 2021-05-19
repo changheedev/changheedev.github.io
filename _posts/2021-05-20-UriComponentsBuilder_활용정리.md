@@ -1,7 +1,13 @@
+---
+title: UriComponentsBuilder 활용 정리
+categories: [Programming, Spring]
+tags: [Spring, UriComponents, UriComponentsBuilder]
+---
+
 ## UriComponentsBuilder
 
--   스프링에서 URI를 생성할 때, 편리하게 할 수 있도록 도와주는 클래스.
--   Spring Web 의존성이 필요하고 `org.spring.framework.web.util` 패키지에 포함되어 있다.
+- 스프링에서 URI를 생성할 때, 편리하게 할 수 있도록 도와주는 클래스.
+- Spring Web 의존성이 필요하고 `org.spring.framework.web.util` 패키지에 포함되어 있다.
 
 ## 사용법
 
@@ -33,7 +39,7 @@ UriComponents uriComponents = UriComponentsBuilder
 UriComponents uriComponents = UriComponentsBuilder
       .fromUriString("http://example.com/api/sample/한글")
       .build()
-      .encode(); 
+      .encode();
 
 // http://www.example.com/api/sample/%ED%95%9C%EA%B8%80
 

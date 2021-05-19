@@ -1,3 +1,9 @@
+---
+title: Gradle - implementation vs api
+categories: [Programming, Spring]
+tags: [Gradle, implementation, api]
+---
+
 Gradle 3.0 에서 complie 키워드가 implementation 과 api 두 가지로 분리되었다.
 
 두 경우의 차이를 구글링해보면 아래와 같이 설명하고 있다.
@@ -5,13 +11,13 @@ Gradle 3.0 에서 complie 키워드가 implementation 과 api 두 가지로 분�
 **implemetation**
 
 > Gradle은 종속성을 컴파일 클래스 경로에 추가하여 종속성을 빌드 출력에 패키징합니다. 다만 **모듈이 implementation 종속성을 구성하는 경우, 이것은 Gradle에 개발자가 모듈이 컴파일 시 다른 모듈로 유출되는 것을 원치 않는다는 것을 알려줍니다. 즉, 종속성은 런타임 시 다른 모듈에서만 이용할 수 있습니다.**
-> 
+>
 > api 또는 compile(지원 중단됨) 대신 이 종속성 구성을 사용하면 빌드 시스템이 재컴파일해야 하는 모듈의 수가 줄어들기 때문에 빌드 시간이 상당히 개선될 수 있습니다. 예를 들어, implementation 종속성이 API를 변경하면 Gradle은 해당 종속성과 그 종속성에 직접 연결된 모듈만 다시 컴파일합니다. 대부분의 앱과 테스트 모듈은 이 구성을 사용해야 합니다.
 
 **api**
 
 > Gradle은 컴파일 클래스 경로 및 빌드 출력에 종속성을 추가합니다. **모듈에 api 종속성을 포함하면 다른 모듈에 그 종속성을 과도적으로 내보내기를 원하며 따라서 런타임과 컴파일 시 모두 종속성을 사용할 수 있다는 사실을 Gradle에 알려줄 수 있습니다.**
-> 
+>
 > 이 구성은 compile(현재 지원 중단됨)과 똑같이 동작합니다. 다만 이것은 주의해서 사용해야 하며 다른 업스트림 소비자에게 일시적으로 내보내는 종속성만 함께 사용해야 합니다. 그 이유는 api 종속성이 외부 API를 변경하면 Gradle이 컴파일 시 해당 종속성에 액세스할 권한이 있는 모듈을 모두 다시 컴파일하기 때문입니다. 그러므로 api 종속성이 많이 있으면 빌드 시간이 상당히 증가합니다. 종속성의 API를 별도의 모듈에 노출시키고 싶은 것이 아니라면 라이브러리 모듈은 implementation 종속성을 대신 사용해야 합니다.
 
 즉, implementation 을 사용하면 import 된 모듈의 종속성을 상위 모듈에서 접근할 수 없으며, 해당 모듈이 변경되더라도 직접 연결된 모듈만 재컴파일 하면 되지만, api 를 사용하면 상위 모듈에서 해당 모듈에 접근할 수 있고, 해당 모듈이 변경되면 의존성을 갖는 모든 모듈을 재컴파일 해야 한다는 것이다.
@@ -95,7 +101,7 @@ dependencies {
 한 [블로그](https://medium.com/mindorks/implementation-vs-api-in-gradle-3-0-494c817a6fa)의 저자가 얘기하는 것처럼 대부분의 경우에는 implementation 을 사용하여 의존 관계를 최대한 줄이는 방향으로 사용하는 것이 좋을 것 같다.
 
 > Just replace all `compile` with the `implementation` and try to build the project. If it builds successfully, well and good. otherwise look for any leaking dependency you might be using and import those libraries using `api` keyword.
-> 
+>
 > 모든 `compile`을 `implementation`으로 바꾸고 프로젝트를 빌드해보세요.  
 > 만일 여러분이 성공적으로 잘 된다면 훌륭한 프로젝트 입니다.  
 > 그렇지 않으면 종속성이 있는지 찾아보고 `api`키워드를 사용하여 해당 라이브러리를 사용합시다.

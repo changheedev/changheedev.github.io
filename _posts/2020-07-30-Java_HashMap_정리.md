@@ -1,8 +1,14 @@
+---
+title: Java - HashMap 정리
+categories: [Programming, Java]
+tags: [JAVA, HashMap, TreeMap, Hash]
+---
+
 # 1\. HashMap
 
--   데이터를 Key와 Value로 저장하는 자료구조
--   효율적인 검색을 위해 사용된다
--   Key 값을 해시함수로 해싱하여 해당 데이터가 위치한 버킷의 주소값을 찾을 수 있고 이를 통해 바로 찾으려는 데이터에 접근한다.
+- 데이터를 Key와 Value로 저장하는 자료구조
+- 효율적인 검색을 위해 사용된다
+- Key 값을 해시함수로 해싱하여 해당 데이터가 위치한 버킷의 주소값을 찾을 수 있고 이를 통해 바로 찾으려는 데이터에 접근한다.
 
 ## 1.1 자바의 HashMap
 
@@ -89,10 +95,10 @@ public HashMap(int initialCapacity, float loadFactor) {...}
 이러한 문제를 피하기 위해 다음과 같은 보조 해시 함수를 사용한다.
 
 ```java
-static final int hash(Object key) { 
-    int h; 
-    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16); 
-}  
+static final int hash(Object key) {
+    int h;
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
 ```
 
 Java 8 HashMap 보조 해시 함수는 상위 16비트 값을 XOR 연산하는 매우 단순한 형태의 보조 해시 함수를 사용한다.
@@ -133,17 +139,17 @@ public TreeMap(Comparator<? super K> comparator) {
 
 [https://ko.wikipedia.org/wiki/해시\_테이블](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%8B%9C_%ED%85%8C%EC%9D%B4%EB%B8%94)
 
--   임의의 길이의 데이터를 고정길이의 데이터로 매핑하는 함수
--   DNA Sequence 패턴 유사도 검사, 암호화, 데이터 무결성 확인(HMAC) 등의 용도로 사용
-    -   암호학적 해시함수(Cryptographic Hash Function)와 비암호학적 해시함수로 구분
-    -   암호학적 해시함수의 종류로는 MD5, SHA계열 해시함수가 있으며 비암호학적 해시함수로는 CRC32등이 있다.
--   해싱 결과 값이 중복될 수 있다. (해시 충돌)
--   해시 충돌의 확률이 높을수록 서로 다른 데이터를 구별하기 어려워지고 검색하는 비용이 증가
+- 임의의 길이의 데이터를 고정길이의 데이터로 매핑하는 함수
+- DNA Sequence 패턴 유사도 검사, 암호화, 데이터 무결성 확인(HMAC) 등의 용도로 사용
+  - 암호학적 해시함수(Cryptographic Hash Function)와 비암호학적 해시함수로 구분
+  - 암호학적 해시함수의 종류로는 MD5, SHA계열 해시함수가 있으며 비암호학적 해시함수로는 CRC32등이 있다.
+- 해싱 결과 값이 중복될 수 있다. (해시 충돌)
+- 해시 충돌의 확률이 높을수록 서로 다른 데이터를 구별하기 어려워지고 검색하는 비용이 증가
 
 **좋은 해시 함수의 조건**
 
--   Determinism : 같은 수를 넣을 경우 해시함수는 항상 같은 값을 리턴해야 함. 즉 외부상황에 따라 값이 달라지지 않고, 순수 내부 로직으로 작동
--   Uniformity : input을 집어 넣었을 때, 어떤 output이 나오는 해시 함수가 있다고 하자.이것은 해시의 충돌 확률을 낮추기 위해서다.
--   충돌이 안 일어날 수록 좋은 해쉬 함수.
--   이 때 output range에 있는 각각의 값들이 나올 확률은 서로 대략적(roughly)으로 같아야 한다.
--   결과값이 Bucket Size를 넘지 않도록 범위를 조정할 것.
+- Determinism : 같은 수를 넣을 경우 해시함수는 항상 같은 값을 리턴해야 함. 즉 외부상황에 따라 값이 달라지지 않고, 순수 내부 로직으로 작동
+- Uniformity : input을 집어 넣었을 때, 어떤 output이 나오는 해시 함수가 있다고 하자.이것은 해시의 충돌 확률을 낮추기 위해서다.
+- 충돌이 안 일어날 수록 좋은 해쉬 함수.
+- 이 때 output range에 있는 각각의 값들이 나올 확률은 서로 대략적(roughly)으로 같아야 한다.
+- 결과값이 Bucket Size를 넘지 않도록 범위를 조정할 것.
