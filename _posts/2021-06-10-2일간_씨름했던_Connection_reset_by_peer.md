@@ -1,7 +1,7 @@
 ---
-title: Nginx proxy 이용시 주의할 점
+title: 2일간 씨름했던 Connection reset by peer
 categories: [개발자로 성장하기]
-tags: [회사생활, 개발자]
+tags: [회사생활, 개발자, Nginx]
 ---
 
 
@@ -86,13 +86,13 @@ org.apache.catalina.connector.ClientAbortException: java.io.IOException: Connect
 
 그렇다는 것은 Nginx쪽 문제였다는 것이므로, Nginx의 로그파일을 확인해보았다.
 
-![스크린샷 2021-06-10 오후 11.08.11](./images/스크린샷 2021-06-10 오후 11.08.11.png)
+![스크린샷 2021-06-10 오후 11.08.11](https://user-images.githubusercontent.com/17294694/122771596-8d001700-d2e1-11eb-8cc3-545f0c83af09.png)
 
 다운로드 API 호출을 Nginx에서 proxy 할때  `/var/cache/nginx/proxy_temp/...` 라는 경로에 있는 임시파일들을 참조하고 있었는데 권한이 없어 Permission denied 오류가 발생하고 있었다.
 
 해당 경로의 접근 권한을 확인해보니 `nginx:nginx`  로 되어 있었다.
 
-![스크린샷 2021-06-10 오후 11.07.49](./images/스크린샷 2021-06-10 오후 11.07.49.png)
+![스크린샷 2021-06-10 오후 11.07.49](https://user-images.githubusercontent.com/17294694/122771633-938e8e80-d2e1-11eb-8509-9dbfd5fe6275.png)
 
 Nginx의 기본 user값은 nginx인데, 배포 설정을 진행하던 당시 Nginx에서 빌드 결과물에 접근 권한을 가질 수 있도록 user를 다른 값으로 변경해놓았던 것이 문제였다.
 
@@ -117,6 +117,10 @@ Nginx의 기본 user값은 nginx인데, 배포 설정을 진행하던 당시 Ngi
 그 이유는, 스프링 서버로 프록시해주는 Nginx에서 그 크기만큼의 Payload를 받을 수 있도록 설정되어 있지 않았기 때문이었다.
 
 Nginx 설정은 한번 설정해두면 크게 건들일이 없기 때문에 간과하기가 쉬운데, 스프링 서버에서 네트워크 관련된 설정이 적용되는 경우 Nginx에도 적절한 값으로 설정이 되어있는지 확인해 볼 필요가 있다. (네트워크 관련 문제가 생겼을 때도 Nginx를 꼭 같이 확인해보자...)
+
+
+
+
 
 
 
