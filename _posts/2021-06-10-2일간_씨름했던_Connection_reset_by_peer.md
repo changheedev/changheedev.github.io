@@ -2,6 +2,7 @@
 title: 2일간 씨름했던 Connection reset by peer
 categories: [개발자로 성장하기]
 tags: [회사생활, 개발자, Nginx]
+published : false
 ---
 
 
